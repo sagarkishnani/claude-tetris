@@ -23,7 +23,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: "--allowedTools Bash(gh issue *),Bash(gh label *),Read"
+          settings: |
+            {
+              "permissions": {
+                "allow": [
+                  "Bash(gh:*)",
+                  "Read"
+                ]
+              }
+            }
           prompt: |
             You are a GitHub issue formatter for a Tetris game project (vanilla JS/HTML/CSS, no dependencies).
 
