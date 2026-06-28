@@ -128,14 +128,29 @@ body {
 
 /* ---- Toggle de tema ---- */
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.theme-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.theme-toggle-track {
+  display: inline-block;
+  flex-shrink: 0;
   width: 44px;
   height: 24px;
   border-radius: 12px;
   border: 1px solid var(--toggle-track-border);
   background: var(--toggle-track-bg);
   position: relative;
-  cursor: pointer;
-  padding: 0;
   transition: background 0.2s, border-color 0.2s;
 }
 
@@ -150,8 +165,13 @@ body {
   transition: transform 0.2s, background 0.2s;
 }
 
-[data-theme='light'] .theme-toggle-knob {
+.theme-toggle input:checked + .theme-toggle-track .theme-toggle-knob {
   transform: translateX(20px);
+}
+
+.theme-toggle input:focus-visible + .theme-toggle-track {
+  outline: 2px solid var(--value-color);
+  outline-offset: 2px;
 }
 
 /* ---- Controles ---- */

@@ -304,13 +304,12 @@ restartBtn.addEventListener('click', init);
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+  themeToggle.checked = theme === 'light';
   localStorage.setItem('theme', theme);
 }
 
-themeToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-  applyTheme(current);
+themeToggle.addEventListener('change', () => {
+  applyTheme(themeToggle.checked ? 'light' : 'dark');
 });
 
 applyTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
